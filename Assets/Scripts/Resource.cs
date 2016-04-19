@@ -50,11 +50,11 @@ public class ResourceQuantity : System.Object
 	public void Add (Resource _resource, int quantity)
 	{
 
-		foreach (var item in Resources)
+		foreach (var listItem in Resources)
 		{
-			if (item.resource == _resource)
+			if (listItem.resource == _resource)
 			{
-				var number = item.number;
+				var number = listItem.number;
 				number = number + quantity;
 				return;
 			} 
@@ -64,30 +64,37 @@ public class ResourceQuantity : System.Object
 
 
 	}
-	//
-	//	/// <summary>
-	//	/// Add or subtract the specified Resource Quantity.
-	//	/// </summary>
-	//	/// <param name="resourceQuantity">Resource quantity.</param>
-	//	public void Add (ResourceQuantity resourceQuantity)
-	//	{
-	//		foreach (var resource in resourceQuantity.Resources.Keys)
-	//		{
-	//			var quantity = resourceQuantity.Resources [resource];
-	//
-	//			if (this.Resources.ContainsKey (resource) == false)
-	//			{
-	//				this.Resources.Add (resource, quantity);
-	//			} else
-	//			{
-	//				this.Resources [resource] = Resources [resource] + quantity;
-	//			}
-	//
-	//		}
-	//
-	//	}
+
+	/// <summary>
+	/// Add or subtract the specified Resource Quantity.
+	/// </summary>
+	/// <param name="resourceQuantity">Resource quantity.</param>
+	public void Add (ResourceQuantity resourceQuantity)
+	{
+		foreach (var newitem in resourceQuantity.Resources)
+		{
+			var newResource = newitem.resource;
+			var newquantity = newitem.number;
+
+			foreach (var existinrResource in Resources)
+			{
+				if (existinrResource.resource == newResource)
+				{
+					var number = existinrResource.number;
+					number = number + newquantity;
+				} else
+				{
+					Resources.Add (new ResourceCount (newResource, newquantity));
+				}
+	
+	
+			}
+	
+		}
 
 
+	}
 }
+
 
 
