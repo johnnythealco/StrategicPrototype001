@@ -1,43 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 
+
+
+
 [System.Serializable]
-public class StarSystem : System.Object
+public class StarSystem : Asset
 {
-	short id;
-	string name;
-	string descriptions;
-
-
+	public List<Planet> planets;
+	public List<Region> localRegions;
 }
 
 
 [System.Serializable]
-public class Planet : System.Object
+public class Planet : Asset
 {
-	short id;
-	string name;
-	string descriptions;
-
+	public string classification;
+	public List<Region> regions;
 
 }
 
 [System.Serializable]
-public class Region : System.Object
+public class Region : Asset
 {
-	short id;
-	string name;
-	string descriptions;
-
+	public string owner;
+	public List<Structure> structures;
 
 }
 
 [System.Serializable]
-public class Structure : System.Object
+public class Structure : Asset
 {
-	public short id;
-	public string name;
-	public string descriptions;
-	public ResourceQuantity cost;
+	public Resources cost;
 }
