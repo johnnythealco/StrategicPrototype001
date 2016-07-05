@@ -33,5 +33,10 @@ public class Region : Asset
 [System.Serializable]
 public class Structure : Asset
 {
-	public Resources cost;
+	public CoreResource buildCost;
+	public CoreResource directEffect;
+
+	public Resources inputs;
+	public Resources outputs;
+	
 }

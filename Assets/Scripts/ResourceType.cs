@@ -6,11 +6,11 @@ using System;
 
 public enum ResourceCategory
 {
-	Critical = 0,
-	Strategic = 1,
-	Comodity = 2,
-	BasicGoods = 3,
-	LuxuryGoods = 4
+
+	Strategic = 0,
+	Comodity = 1,
+	BasicGoods = 2,
+	LuxuryGoods = 3
 
 }
 
@@ -20,15 +20,19 @@ public class ResourceType : System.Object
 	public string name;
 	public Sprite icon;
 	public ResourceCategory Category;
+	public float baseprice;
+	public int prosperity;
+	public int health;
 }
 
 [System.Serializable]
 public class Resource
 {
-	public ResourceType resource;
+	//Resouce is used to lookup the Register so it needs to match
+	public string resource;
 	public int value;
 
-	public Resource (ResourceType _resource, int _value)
+	public Resource (string _resource, int _value)
 	{
 		this.resource = _resource;
 		this.value = _value;
@@ -37,7 +41,7 @@ public class Resource
 
 	public override string ToString ()
 	{
-		var _name = resource.name + ": ";
+		var _name = resource + ": ";
 
 		var _value = value.ToString ();
 
@@ -50,10 +54,6 @@ public class Resources : System.Object
 {
 	public List<Resource> list = new List<Resource> ();
 
-	/// <summary>
-	/// Initializes a new instance of the <see cref="ResourceQuantity"/> class.
-	/// </summary>
-	/// <param name="_resources">Resources.</param>
 	public Resources (List<Resource> _resources)
 	{
 		this.list = _resources;
@@ -65,13 +65,7 @@ public class Resources : System.Object
 	}
 
 
-
-	/// <summary>
-	/// Add the specified resource and quantity.
-	/// </summary>
-	/// <param name="resource">Resource.</param>
-	/// <param name="quantity">Quantity.</param>
-	public void Add (ResourceType _resource, int quantity)
+	public void Add (string _resource, int quantity)
 	{
 
 		foreach (var listItem in list)
@@ -89,10 +83,6 @@ public class Resources : System.Object
 
 	}
 
-	/// <summary>
-	/// Add or subtract the specified Resource Quantity.
-	/// </summary>
-	/// <param name="resourceQuantity">Resource quantity.</param>
 	public void Add (Resources _resources)
 	{
 		foreach (var newitem in _resources.list)
