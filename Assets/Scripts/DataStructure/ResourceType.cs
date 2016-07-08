@@ -38,6 +38,8 @@ public class Resource
 		this.value = _value;
 	}
 
+	public ResourceType type{ get { return Game.Manager.register.resourceRegister.getResourceType (resource); } }
+
 
 	public override string ToString ()
 	{

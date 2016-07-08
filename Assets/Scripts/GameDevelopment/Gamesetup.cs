@@ -1,10 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Gamesetup : MonoBehaviour
 {
+	public Register register;
+
 
 	public static Gamesetup Manager = null;
+
+	public List<ResourceType> AllResources{ get { return register.AllResources; } }
+
+	public List<ResourceType> StrategicResources{ get { return register.StrategicResources; } }
 
 	void Awake ()
 	{
@@ -20,5 +27,7 @@ public class Gamesetup : MonoBehaviour
 		DontDestroyOnLoad (gameObject);
 			
 	}
+
+
 
 }
