@@ -8,6 +8,25 @@ public class JKTesting : MonoBehaviour
 	public List<Resource> resources = new List<Resource> ();
 	public ResourceListDisplay resourcesDisplay;
 
+	void Start ()
+	{
+		resourcesDisplay.Prime (resources);
+		resourcesDisplay.onResourceUpdate += ResourcesDisplay_onResourceUpdate;
+	}
+
+	void ResourcesDisplay_onResourceUpdate (Resource _resource)
+	{
+
+		foreach (var item in resources)
+		{
+			if (item.resource == _resource.resource)
+			{
+				item.value = _resource.value;
+			} 
+		}
+
+	}
+
 
 	public void ShowResourceSelector ()
 	{
