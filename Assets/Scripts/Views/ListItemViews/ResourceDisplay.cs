@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class ResourceDisplay : MonoBehaviour
 {
@@ -19,10 +20,19 @@ public class ResourceDisplay : MonoBehaviour
 
 	public InputField quantityInput;
 	public InputField displaynameInput;
+	public Dropdown categoryInput;
 	public InputField basepriceInput;
 	public InputField prosperityInput;
 	public InputField healthInput;
 
+	void Start ()
+	{
+		if (categoryInput != null)
+		{
+			categoryInput.ClearOptions ();
+			categoryInput.AddOptions (ResourceType.getCategories ());
+		}
+	}
 
 
 	#region Delegates & Events
@@ -76,6 +86,9 @@ public class ResourceDisplay : MonoBehaviour
 			prosperityInput.text = resourceType.prosperity.ToString (); 
 		if (healthInput != null)
 			healthInput.text = resourceType.health.ToString ();
+		if (categoryInput != null)
+			categoryInput.value = (int)resourceType.Category;
+		
 
 
 	}
@@ -97,7 +110,7 @@ public class ResourceDisplay : MonoBehaviour
 
 	}
 
-	void InputPrime ()
+	public void InputPrime ()
 	{
 		
 
@@ -111,6 +124,8 @@ public class ResourceDisplay : MonoBehaviour
 			resourceType.health = int.Parse (healthInput.text);
 		if (quantityInput != null)
 			resource.value = int.Parse (quantityInput.text);
+		if (categoryInput != null)
+			resourceType.Category = (ResourceCategory)categoryInput.value;
 
 		
 	}

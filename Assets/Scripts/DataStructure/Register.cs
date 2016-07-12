@@ -4,18 +4,18 @@ using System.Collections.Generic;
 
 public class Register : ScriptableObject
 {
-	public  ResourceRegister resourceRegister;
+	public  ResourceTypeRegister resourceTypeRegister;
 	public  StructureRegister structureRegister;
 
-	public List<ResourceType> AllResources{ get { return resourceRegister.MasterList; } }
+	public List<ResourceType> AllResources{ get { return resourceTypeRegister.MasterList; } }
 
-	public List<ResourceType> StrategicResources{ get { return resourceRegister.StrategicResources; } }
+	public List<ResourceType> StrategicResources{ get { return resourceTypeRegister.StrategicResources; } }
 
 
 
 }
 
-public class ResourceRegister : ScriptableObject
+public class ResourceTypeRegister : ScriptableObject
 {
 	public List<ResourceType> MasterList = new List<ResourceType> ();
 

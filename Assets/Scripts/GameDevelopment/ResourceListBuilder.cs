@@ -2,21 +2,22 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class JKTesting : MonoBehaviour
+public class ResourceListBuilder : MonoBehaviour
 {
+
 	public ResourceTypeSelect resourceTypeSelect;
-	public List<Resource> resources = new List<Resource> ();
 	public ResourceListDisplay resourcesDisplay;
-	//	public ResourceDisplay resourceDisplay;
+
+	List<Resource> resources = new List<Resource> ();
+	List<ResourceType> resourceTypes = new List<ResourceType> ();
 
 
-	void Start ()
+
+	void Prime (List<ResourceType> _ResourceTypes)
 	{
+		resourceTypes.AddRange (_ResourceTypes);
 		resourcesDisplay.Prime (resources);
 		resourcesDisplay.onResourceUpdate += ResourcesDisplay_onResourceUpdate;
-
-
-
 	}
 
 	void ResourcesDisplay_onResourceUpdate (Resource _resource)
@@ -33,11 +34,10 @@ public class JKTesting : MonoBehaviour
 	}
 
 
-	public void ShowResourceSelector ()
+	public void AddResourceType ()
 	{
-		var allResources = Game.Manager.AllResources; 
 		var TypeSelect = (ResourceTypeSelect)Instantiate (resourceTypeSelect);
-		TypeSelect.Prime (allResources);
+		TypeSelect.Prime (resourceTypes);
 		TypeSelect.onSelect += OnTypeSelect;
 	}
 
@@ -50,6 +50,4 @@ public class JKTesting : MonoBehaviour
 		}
 		resourcesDisplay.Prime (resources);
 	}
-
-
 }

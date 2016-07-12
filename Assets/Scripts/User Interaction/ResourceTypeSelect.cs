@@ -4,9 +4,7 @@ using System.Collections.Generic;
 
 public class ResourceTypeSelect : MonoBehaviour
 {
-	public ResourceListDisplay InuptsList;
-	public ResourceListDisplay OutputsList;
-
+	public ResourceListDisplay ResourceTypeList;
 
 	List<ResourceType> availableResources = new List<ResourceType> ();
 	List<ResourceType> selectedResources = new List<ResourceType> ();
@@ -18,11 +16,9 @@ public class ResourceTypeSelect : MonoBehaviour
 	public void Prime (List<ResourceType> _availableResources)
 	{
 		availableResources.AddRange (_availableResources);
-		InuptsList.Prime (availableResources);
-		InuptsList.onResourceTypeClick += InuptsListListItemClick;
-		OutputsList.onResourceTypeClick += OutputsListListItemClick;
+		ResourceTypeList.Prime (availableResources);
+		ResourceTypeList.onResourceTypeClick += ResourceTypeClick;
 	}
-
 
 	void Select ()
 	{
@@ -32,41 +28,16 @@ public class ResourceTypeSelect : MonoBehaviour
 
 	void OnDestroy ()
 	{
-		InuptsList.onResourceTypeClick -= InuptsListListItemClick;
-		OutputsList.onResourceTypeClick -= OutputsListListItemClick;
+		ResourceTypeList.onResourceTypeClick -= ResourceTypeClick;
+
 	}
 
-	void OutputsListListItemClick (ResourceType _resource)
+	void ResourceTypeClick (ResourceType _resource)
 	{
-		selectedResources.Remove (_resource);
-		availableResources.Add (_resource);
-		InuptsList.Prime (availableResources);
-		OutputsList.Prime (selectedResources);
-	}
-
-	void InuptsListListItemClick (ResourceType _resource)
-	{
-		Debug.Log ("List item Clicked: " + _resource.name);
 		availableResources.Remove (_resource);
 		selectedResources.Add (_resource);
-		InuptsList.Prime (availableResources);
-		OutputsList.Prime (selectedResources);
-
-
+		ResourceTypeList.Prime (availableResources);
 	}
-
-	//	public List<Resource> SelectResource ()
-	//	{
-	//
-	//		var resourceSelection = new List<Resource> ();
-	//
-	//		foreach (var resourceType in selectedResources)
-	//		{
-	//			var resource = new Resource (resourceType.name, 0);
-	//			resourceSelection.Add (resource);
-	//		}
-	//		return resourceSelection;
-	//	}
 
 	public void EndSelection ()
 	{

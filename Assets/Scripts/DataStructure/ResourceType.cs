@@ -3,15 +3,14 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public enum ResourceCategory
 {
-
 	Strategic = 0,
-	Comodity = 1,
-	BasicGoods = 2,
-	LuxuryGoods = 3
-
+	BasicGoods = 1,
+	LuxuryGoods = 2,
+	SpecialistsGoods = 3
 }
 
 [System.Serializable]
@@ -23,6 +22,12 @@ public class ResourceType : System.Object
 	public float baseprice;
 	public int prosperity;
 	public int health;
+
+
+	public static List<string> getCategories ()
+	{
+		return Enum.GetNames (typeof(ResourceCategory)).ToList ();
+	}
 }
 
 [System.Serializable]
@@ -38,7 +43,7 @@ public class Resource
 		this.value = _value;
 	}
 
-	public ResourceType type{ get { return Game.Manager.register.resourceRegister.getResourceType (resource); } }
+	public ResourceType type{ get { return Game.Manager.register.resourceTypeRegister.getResourceType (resource); } }
 
 
 	public override string ToString ()
