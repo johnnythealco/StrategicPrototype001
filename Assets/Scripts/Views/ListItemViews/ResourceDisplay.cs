@@ -45,14 +45,21 @@ public class ResourceDisplay : MonoBehaviour
 
 	public event ResourceDisplayDelegate onClickResource;
 
-	public delegate void ResoureTypeUpdateDelegate (ResourceType _resourceType);
+	public delegate void ResourceTypeUpdateDelegate (ResourceType _resourceType);
 
-	public event ResoureTypeUpdateDelegate onUpdateType;
+	public event ResourceTypeUpdateDelegate onUpdateType;
 
-	public delegate void ResoureUpdateDelegate (Resource _resource);
+	public delegate void ResourceUpdateDelegate (Resource _resource);
 
-	public event ResoureUpdateDelegate onUpdateResource;
+	public event ResourceUpdateDelegate onUpdateResource;
 
+	public delegate void ResourceDeleteDelegate (Resource _resource);
+
+	public event ResourceDeleteDelegate onDeleteResource;
+
+	public delegate void ResourceTypeDeleteDelegate (ResourceType _resourceType);
+
+	public event ResourceTypeDeleteDelegate onDeleteResourceType;
 
 
 
@@ -149,6 +156,15 @@ public class ResourceDisplay : MonoBehaviour
 
 		if (onUpdateResource != null)
 			onUpdateResource.Invoke (resource);
+	}
+
+	public void DeleteResource ()
+	{
+		if (onDeleteResource != null)
+			onDeleteResource.Invoke (resource);
+
+		if (onDeleteResourceType != null)
+			onDeleteResourceType.Invoke (resourceType);
 	}
 
 

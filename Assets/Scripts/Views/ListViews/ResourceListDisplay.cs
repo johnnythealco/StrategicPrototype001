@@ -43,6 +43,7 @@ public class ResourceListDisplay : MonoBehaviour
 			ResourceDisplay listItem = (ResourceDisplay)Instantiate (resourceDisplay);
 			listItem.transform.SetParent (target, false);
 			listItem.Prime (resource);
+			listItem.gameObject.tag = "ResourceDisplay";
 			listItem.onClickType += OnResourceTypeClick;
 			listItem.onUpdateType += OnResourceTypeUpdate;
 
@@ -61,6 +62,7 @@ public class ResourceListDisplay : MonoBehaviour
 			ResourceDisplay listItem = (ResourceDisplay)Instantiate (resourceDisplay);
 			listItem.transform.SetParent (target, false);
 			listItem.Prime (resource);
+			listItem.gameObject.tag = "ResourceDisplay";
 			listItem.onClickResource += OnResourceClick;
 			listItem.onUpdateResource += OnResoucreUpdate;
 
@@ -109,7 +111,10 @@ public class ResourceListDisplay : MonoBehaviour
 
 		for (int i = 0; i < target.childCount; i++)
 		{
-			Destroy (target.GetChild (i).gameObject);
+			if (target.GetChild (i).gameObject.tag == "ResourceDisplay")
+			{
+				Destroy (target.GetChild (i).gameObject);
+			}
 		}
 		
 	}
