@@ -4,19 +4,19 @@ using System.Collections.Generic;
 
 public class JKTesting : MonoBehaviour
 {
-	public ResourceListBuilder resourceListBuilder;
-	public List<Resource> resources;
+	public StructureTypeDisplay structureTypeDisplay;
+	public List<StructureType> structures;
 
 	void Start ()
 	{
-		resources = new List<Resource> ();
-		resourceListBuilder.Prime (resources);
-		resourceListBuilder.onResourceUpdate += onResourceUpdate;
+
+		structureTypeDisplay.Prime (structures [0]);  
+		structureTypeDisplay.onUpdate += StructureTypeDisplay_onUpdate;
 	}
 
-	void onResourceUpdate (List<Resource> _resources)
+	void StructureTypeDisplay_onUpdate (StructureType _structureType)
 	{
-		resources = _resources;
+		structures [0] = _structureType;
 	}
 
 

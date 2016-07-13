@@ -56,7 +56,7 @@ public class ResourceTypeRegister : ScriptableObject
 
 public class StructureRegister : ScriptableObject
 {
-	public List<Structure> MasterList = new List<Structure> ();
+	public List<StructureType> MasterList = new List<StructureType> ();
 }
 
 

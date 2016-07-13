@@ -26,14 +26,17 @@ public class Planet : Asset
 public class Region : Asset
 {
 	public string owner;
-	public List<Structure> structures;
+	public List<StructureType> structures;
 
 }
 
 [System.Serializable]
-public class Structure : Asset
+public class StructureType : Asset
 {
-	public CoreResource buildCost;
+	public int cost;
+	public int influence;
+	public Resources resourceCost;
+
 	public CoreResource directEffect;
 
 	public Resources inputs;
